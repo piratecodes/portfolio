@@ -1,0 +1,2 @@
+- info Loaded env from D:\portfolio\.env
+> Ready on http://localhost:\\.\pipe\0f18fcb3-41ac-4a14-bda4-4457defc03fa

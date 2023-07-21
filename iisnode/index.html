@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>iisnode logs</title>
+    <style type="text/css">
+        body
+        {
+            font-family: "Trebuchet MS" , Arial, Helvetica, sans-serif;
+        }
+        table
+        {
+            border-collapse: collapse;
+        }
+        td, th
+        {
+            border: 1px solid lightgray;
+            padding: 3px 7px 2px 7px;
+        }
+        th
+        {
+            text-align: left;
+            padding-top: 5px;
+            padding-bottom: 4px;
+            background-color: Gray;
+            color: #ffffff;
+        }
+        td.stderr
+        {
+            color: Red;
+        }
+    </style>
+</head>
+<body>
+    <table id="logFilesTable">
+        <tr>
+            <th>
+                Computer name
+            </th>
+            <th>
+                PID
+            </th>
+            <th>
+                Type
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+    </table>
+    <p id="lastUpdated"></p>
+    <script type="text/javascript">
+
+        // this is replaced with actual data at runtime by code in interceptor.js
+        var logFiles = [{"file":"SUBHAM-PC-1084-stderr-1689865405758.txt","computername":"SUBHAM-PC","pid":1084,"type":"stderr","created":1689865405758},{"file":"SUBHAM-PC-1084-stdout-1689865405753.txt","computername":"SUBHAM-PC","pid":1084,"type":"stdout","created":1689865405753},{"file":"SUBHAM-PC-12784-stderr-1689855359372.txt","computername":"SUBHAM-PC","pid":12784,"type":"stderr","created":1689855359372},{"file":"SUBHAM-PC-12784-stdout-1689855359370.txt","computername":"SUBHAM-PC","pid":12784,"type":"stdout","created":1689855359370},{"file":"SUBHAM-PC-1284-stderr-1689892839825.txt","computername":"SUBHAM-PC","pid":1284,"type":"stderr","created":1689892839825},{"file":"SUBHAM-PC-1284-stdout-1689892839820.txt","computername":"SUBHAM-PC","pid":1284,"type":"stdout","created":1689892839820},{"file":"SUBHAM-PC-13524-stderr-1689804168090.txt","computername":"SUBHAM-PC","pid":13524,"type":"stderr","created":1689804168090},{"file":"SUBHAM-PC-13524-stdout-1689804168089.txt","computername":"SUBHAM-PC","pid":13524,"type":"stdout","created":1689804168089},{"file":"SUBHAM-PC-13704-stderr-1689850908424.txt","computername":"SUBHAM-PC","pid":13704,"type":"stderr","created":1689850908424},{"file":"SUBHAM-PC-13704-stdout-1689850908422.txt","computername":"SUBHAM-PC","pid":13704,"type":"stdout","created":1689850908422},{"file":"SUBHAM-PC-14140-stderr-1689936219666.txt","computername":"SUBHAM-PC","pid":14140,"type":"stderr","created":1689936219666},{"file":"SUBHAM-PC-14140-stdout-1689936219663.txt","computername":"SUBHAM-PC","pid":14140,"type":"stdout","created":1689936219663},{"file":"SUBHAM-PC-14208-stderr-1689951292119.txt","computername":"SUBHAM-PC","pid":14208,"type":"stderr","created":1689951292119},{"file":"SUBHAM-PC-14208-stdout-1689951292111.txt","computername":"SUBHAM-PC","pid":14208,"type":"stdout","created":1689951292111},{"file":"SUBHAM-PC-3004-stderr-1689892998602.txt","computername":"SUBHAM-PC","pid":3004,"type":"stderr","created":1689892998602},{"file":"SUBHAM-PC-3004-stdout-1689892998599.txt","computername":"SUBHAM-PC","pid":3004,"type":"stdout","created":1689892998599},{"file":"SUBHAM-PC-6088-stderr-1689942398191.txt","computername":"SUBHAM-PC","pid":6088,"type":"stderr","created":1689942398191},{"file":"SUBHAM-PC-6088-stdout-1689942398188.txt","computername":"SUBHAM-PC","pid":6088,"type":"stdout","created":1689942398188}];
+        var lastUpdated = 1689951292405;
+        var date = new Date();
+
+        date.setTime(lastUpdated);
+        document.getElementById('lastUpdated').innerHTML = 'Index was last updated ' + date;
+
+        logFiles.sort(function (a, b) {
+            return b.created - a.created;
+        });
+
+        var logFilesTable = document.getElementById("logFilesTable");
+        for (var i = 0; i < logFiles.length; i++) {
+            var logFile = logFiles[i];
+            date.setTime(logFile.created);
+            var row = logFilesTable.insertRow(-1);
+            var computerNameCell = row.insertCell(0);
+            var pidCell = row.insertCell(1);
+            var typeCell = row.insertCell(2);
+            var dateCell = row.insertCell(3);
+            var logCell = row.insertCell(4);
+            computerNameCell.innerHTML = logFile.computername;
+            pidCell.innerHTML = logFile.pid.toString();
+            typeCell.innerHTML = logFile.type;
+            typeCell.setAttribute('class', logFile.type);
+            dateCell.innerHTML = date.toString();
+            logCell.innerHTML = '<a href="' + logFile.file + '">log</a>';
+        };
+
+    </script>
+</body>
+</html>
