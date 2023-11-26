@@ -19,7 +19,7 @@ const withPWA = require('next-pwa')({
             ) {
                 return true;
             }
-            return !!(isDev && !asset.name.startsWith("static/runtime/"));
+            return !!(process.env.NODE_ENV === 'production' && !asset.name.startsWith("static/runtime/"));
 
         }
     ],
